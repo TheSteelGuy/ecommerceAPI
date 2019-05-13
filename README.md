@@ -3,6 +3,8 @@
 
 The API documentation can be found here: [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/77da43d136770767f52c)
 
+Hours spent on project roughly 56hours
+
 Setting the project and running
 
 -   Check that python 3 is installed:
@@ -29,10 +31,26 @@ Setting the project and running
 
     ```
     git clone https://github.com/TheSteelGuy/tur_ecom.git
-    
+    cd tur_ecom
+  
     ```
--   
+    
+-   Install dependencies:
 
+    ```
+    pipenv install
+    ```
+    
+        
+    ### Using github
+-   Clone the project repo and cd into it:
+
+    ```
+    unzip the file
+    cd tur_ecom
+  
+    ```
+    
 -   Install dependencies:
 
     ```
@@ -64,12 +82,6 @@ Setting the project and running
     pip install -r requirements.txt
     ```
  
-
--   Apply migrations:
-
-    ```
-    flask db upgrade
-    ```
  ## Setting database:
  
   - assuming your mysql has no password set like mine type on terminal:
@@ -87,4 +99,5 @@ Setting the project and running
     CREATE USER 'username'@'localhost IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON tur.* TO 'username'@'localhost';
     ```
+    ### import the database and data.
     
