@@ -3,7 +3,7 @@
 
 The API documentation can be found here: [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/77da43d136770767f52c)
 
-Hours spent on project roughly 56hours
+Hours spent on project roughly 56 hours
 
 Setting the project and running
 
@@ -100,4 +100,11 @@ Setting the project and running
     GRANT ALL PRIVILEGES ON tur.* TO 'username'@'localhost';
     ```
     ### import the database and data.
+    
+   ## Starting the application
+   - on the project root directory run:
+    ```
+    export FLASK_APP=manage.py
+    flask run
+    ```
     
