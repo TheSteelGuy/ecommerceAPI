@@ -102,10 +102,11 @@ Setting the project and running
     ```
     ### import the database and data.
     
-   ## Starting the application
-   - on the project root directory run:
+   ### Starting the application
+  - on the project root directory run:
     ```
     export FLASK_APP=manage.py
+    
     flask run
     ```
     
