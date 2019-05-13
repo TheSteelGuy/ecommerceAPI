@@ -32,6 +32,7 @@ Setting the project and running
     ```
     git clone https://github.com/TheSteelGuy/tur_ecom.git
     cd tur_ecom
+    git checkout develop
   
     ```
     
