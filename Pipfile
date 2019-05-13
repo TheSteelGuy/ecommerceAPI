@@ -30,9 +30,7 @@ flask-caching = "==1.7.0"
 gevent = "==1.4.0"
 flask-sse = "==0.2.1"
 greenlet = "==0.4.15"
-mysqlclient = "*"
 validate-email = "*"
-pydns = "*"
 flask-testing = "*"
 
 [dev-packages]
