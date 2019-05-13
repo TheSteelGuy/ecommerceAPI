@@ -7,7 +7,6 @@ class BaseSchema(Schema):
     
     deleted = fields.Boolean(dump_only=True)
 
-
     def load_object_into_schema(self, data, partial=False):
         """Helper function to load python objects into schema"""
         data, errors = self.load(data, partial=partial)

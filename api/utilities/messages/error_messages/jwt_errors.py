@@ -9,6 +9,5 @@ error_dict = {
     "Bad request. The token should begin with the word\
  'Bearer'.",
     'NO_TOKEN_MSG':
-    "Bad request. Header does not contain an authorization\
- token."
+    "Authorization code is empty"
 }

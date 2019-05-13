@@ -7,6 +7,7 @@ from .base_schema import BaseSchema
 
 class CustomerSchema(BaseSchema):
     """Customer schema"""
+    customer_id = fields.Integer(dump_only=True)
     name = fields.String(
         error_messages={'required': serialization_errors['field_empty'].format('name')},
         required=True
@@ -41,7 +42,7 @@ class CustomerAddressSchema(BaseSchema):
         required=True
     )
     region = fields.String(
-        error_messages={'required': serialization_errors['field_empty'].format('reqion')},
+        error_messages={'required': serialization_errors['field_empty'].format('region')},
         required=True
     )
     postal_code = fields.String(

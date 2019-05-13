@@ -15,6 +15,7 @@ from config import AppConfig
 
 from api.utilities.constants.constants import AUT_01, AUT_02
 
+
 def get_token(http_request=request):
     """Get token from request object
 
@@ -29,9 +30,9 @@ def get_token(http_request=request):
                          or bearer keyword in authorization header
     """
     from .base_validator import ValidationError
-    token = http_request.headers.get('Authorization')
+    token = http_request.headers.get('USER-KEY')
     if not token:
-        raise ValidationError({'message': jwt_errors['NO_TOKEN_MSG']}, AUT_01, 'NoAuth"', 401)
+        raise ValidationError({'message': jwt_errors['NO_TOKEN_MSG']}, AUT_01, 'NoAuth', 401)
     elif 'bearer' not in token.lower():
         raise ValidationError({'message': jwt_errors['NO_BEARER_MSG']}, AUT_02,'Bearer Missing', 401)
     token = token.split(' ')[-1]

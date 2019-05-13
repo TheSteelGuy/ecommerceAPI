@@ -81,22 +81,20 @@ class CustomerLogin(Resource):
         return response
 
 
-@token_required
 @api.route('/customers/address')
 class CustomerUpdateResource(Resource):
     """Resource class for address update"""
 
+    @token_required
     def put(self):
         # Deserialize, validate response data
         request_data = request.form
         schema = CustomerAddressSchema(exclude=['deleted'])
         user_data, error = schema.load_object_into_schema(request_data)
 
-        import pdb;pdb.set_trace()
-
         if error:
             raise ValidationError(
-                {'message': serialization_errors['field_empty'].format(error[0])}, USR_02, error[0])
+                {'message': error[1][0]}, USR_02, error[0])
 
         customer_instance = Customer.query.filter_by(customer_id=request.decoded_token['sub']).first()
 

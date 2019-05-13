@@ -3,6 +3,8 @@
 import jwt
 from datetime import datetime, timedelta
 from config import AppConfig
+
+
 def token_generator(user_id):
     """Function to generate tokens"""
     
