@@ -24,7 +24,7 @@ Setting the project and running
   
     ```
     
-    ###Using github
+    ### Using github
 -   Clone the project repo and cd into it:
 
     ```
@@ -70,7 +70,7 @@ Setting the project and running
     ```
     flask db upgrade
     ```
- ##Setting database:
+ ## Setting database:
  
   - assuming your mysql has no password set like mine type on terminal:
     ```
