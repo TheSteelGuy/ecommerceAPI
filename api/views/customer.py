@@ -3,7 +3,7 @@ from flask_restplus import Resource
 from flask import jsonify
 
 from api.middlewares.base_validator import ValidationError
-from api.schemas.customer import CustomerSchema
+from api.schemas.customer import CustomerSchema, CustomerAddressSchema
 from api.utilities.constants.constants import USR_02, USR_04
 from api.utilities.messages.error_messages import serialization_errors
 
@@ -76,6 +76,36 @@ class CustomerLogin(Resource):
         customer_data = customer_schema.dump(customer).data
         response = jsonify(
             {'status': 'success', 'customer': customer_data, 'access_token': token.decode(), 'expires_in': '24h'}
+        )
+        response.status_code = 200
+        return response
+
+
+@token_required
+@api.route('/customers/address')
+class CustomerUpdateResource(Resource):
+    """Resource class for address update"""
+
+    def put(self):
+        # Deserialize, validate response data
+        request_data = request.form
+        schema = CustomerAddressSchema(exclude=['deleted'])
+        user_data, error = schema.load_object_into_schema(request_data)
+
+        import pdb;pdb.set_trace()
+
+        if error:
+            raise ValidationError(
+                {'message': serialization_errors['field_empty'].format(error[0])}, USR_02, error[0])
+
+        customer_instance = Customer.query.filter_by(customer_id=request.decoded_token['sub']).first()
+
+        updated_instance = customer_instance.update(**user_data)
+
+        customer_data = customer_schema.dump(updated_instance).data
+
+        response = jsonify(
+         customer_data
         )
         response.status_code = 200
         return response

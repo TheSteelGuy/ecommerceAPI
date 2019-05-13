@@ -6,7 +6,7 @@ from .base_schema import BaseSchema
 
 
 class CustomerSchema(BaseSchema):
-    """Customer model"""
+    """Customer schema"""
     name = fields.String(
         error_messages={'required': serialization_errors['field_empty'].format('name')},
         required=True
@@ -29,11 +29,32 @@ class CustomerSchema(BaseSchema):
                              error_messages={'required': serialization_errors['field_empty'].format('email')})
 
 
-class CustomerRegisterSchema(BaseSchema):
-    """Customer model"""
-    customer_id = fields.Integer(load_only=True)
-    customer = fields.Nested(
-        'CustomerSchema'
+class CustomerAddressSchema(BaseSchema):
+    """Address schemal"""
+    address_2 = fields.String(
+        error_messages={'required': serialization_errors['field_empty'].format('address_2')},
+        required=True
     )
-    access_token = fields.String()
-    expires_in = fields.String()
+    address_2 = fields.String()
+    city = fields.String(
+        error_messages={'required': serialization_errors['field_empty'].format('city')},
+        required=True
+    )
+    region = fields.String(
+        error_messages={'required': serialization_errors['field_empty'].format('reqion')},
+        required=True
+    )
+    postal_code = fields.String(
+        error_messages={'required': serialization_errors['field_empty'].format('postal code')},
+        required=True
+    )
+    country = fields.String(
+        error_messages={'required': serialization_errors['field_empty'].format('country')},
+        required=True
+    )
+    shipping_region_id = fields.Integer(
+        error_messages={'required': serialization_errors['field_empty'].format('shipping region id')},
+        required=True
+    )
+
+

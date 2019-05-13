@@ -32,7 +32,7 @@ class ModelOperations(object):
             setattr(self, field, value)
 
         db.session.commit()
-
+        return self
 
     @classmethod
     def get_or_404(cls, id, code, field):
