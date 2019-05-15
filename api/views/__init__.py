@@ -9,6 +9,6 @@ from .product import (
     )
 from .order import OrderResource
 from .shopping_cart import GenerateUniqueId
-from .stripe import  StripeCharge
+from .stripe import StripeCharge
 
 

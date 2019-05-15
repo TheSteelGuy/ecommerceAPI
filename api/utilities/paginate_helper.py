@@ -63,12 +63,12 @@ def search_db(request, model, query_string):
             or_(model.name.like('%' + query_string + '%'), model.description.like('%' + query_string + '%'))
         )
     elif query_string and all_words == 'off':
-        all_words_tuple = tuple(query_string.split(' '))
 
-        instance_base_query = model.query.filter(or_(model.name.in_(all_words_tuple), model.description.in_(all_words_tuple)))
+        instance_base_query = model.query.whooshee_search(query_string.strip(''))
+
     else:
         raise ValidationError({
-            'message': "The field query string is empty."
+            'message': "The field query string is empty or invalid."
         }, USR_02, 'query_string')
 
     return instance_base_query

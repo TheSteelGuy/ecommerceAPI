@@ -3,6 +3,7 @@
 # Third-party libraries
 
 #middleware
+from api.utilities.constants.constants import PRD_01
 from ..middlewares.base_validator import ValidationError
 
 #utilities
@@ -12,9 +13,7 @@ from api.models.base.base_model import BaseModel
 
 # Database
 from api.models.database import db
-from api.utilities.constants.constants import PRD_01
-import main
-
+from api import whooshee
 
 
 class QueryModel(BaseModel):
@@ -30,10 +29,10 @@ class QueryModel(BaseModel):
             return record
         else:
             raise ValidationError(
-            {'message': serialization_errors['not_found'].format('product with this id')}, PRD_01, 'produc_id')
+            {'message': serialization_errors['not_found'].format('product with this id')}, PRD_01, 'product_id')
 
 
-@main.whooshee.register_model('name', 'description')
+@whooshee.register_model('name', 'description')
 class Product(QueryModel):
     """product model"""
 
@@ -55,8 +54,6 @@ class Product(QueryModel):
     reviews = db.relationship('ProductReview', lazy='joined')
 
 
-
-
 class ProductAttribute(QueryModel):
     """product_attribute model"""
 
@@ -76,4 +73,3 @@ class ProductCategory(QueryModel):
     category = db.relationship(
         'Category',
         lazy='joined')
-    

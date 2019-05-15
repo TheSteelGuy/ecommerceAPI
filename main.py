@@ -7,8 +7,6 @@ from flask_restplus import Api
 from flask_cors import CORS
 from flask_caching import Cache
 from celery import Celery
-from flask_whooshee import Whooshee
-
 
 # Middlewares
 from api import api_blueprint
@@ -18,9 +16,10 @@ from api.error import resource_not_found
 from config import AppConfig
 from api.models.database import db
 
+from api import whooshee
 
 api = Api(api_blueprint, doc=False)
-whooshee = Whooshee()
+
 
 # Celery object and configures it with the broker (redis).
 # __name__ is the app.name, which will be initialized later

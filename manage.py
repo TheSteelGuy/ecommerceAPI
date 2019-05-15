@@ -17,7 +17,6 @@ from main import celery_app
 app = create_app(AppConfig)
 mail = Mail(app)
 
-
 @app.route('/')
 def index():
     """index url"""
