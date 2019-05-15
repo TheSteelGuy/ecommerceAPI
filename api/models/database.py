@@ -9,3 +9,4 @@ db = SQLAlchemy()
 conn = mysql.connector.connect(user=getenv('ADMIN'), database='tur', password=getenv('ADMIN_PWD'))
 cursor = conn.cursor(dictionary=True)
 
+
