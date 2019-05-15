@@ -57,11 +57,17 @@ def validate_pagination_args(request):
 def search_db(request, model, query_string):
     """search model based on a query string"""
     all_words = request.args.get('all_words', 'on', str)
+    import pdb;
+    pdb.set_trace()
 
-    if query_string:
+    if query_string and all_words == 'on':
         instance_base_query = model.query.filter(
             or_(model.name.like('%' + query_string + '%'), model.description.like('%' + query_string + '%'))
         )
+    elif query_string and all_words == 'off':
+        all_words_tuple = tuple(query_string.split(' '))
+
+        instance_base_query = model.query.filter(or_(model.name.in_(all_words_tuple), model.description.in_(all_words_tuple)))
     else:
         raise ValidationError({
             'message': "The field query string is empty."

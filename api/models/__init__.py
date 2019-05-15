@@ -10,3 +10,4 @@ from .tax import Tax
 from .review import ProductReview
 from .sql import sql_queries
 from .database import cursor
+

@@ -21,6 +21,7 @@ from api.middlewares.token_required import token_required
 
 from main import api
 
+
 product_schema = ProductSchema(exclude=['deleted', 'display', 'image_2', 'image'], many=True)
 product_category_schema = ProductCategorySchema(exclude=['deleted'])
 
