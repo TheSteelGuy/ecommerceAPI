@@ -57,8 +57,6 @@ def validate_pagination_args(request):
 def search_db(request, model, query_string):
     """search model based on a query string"""
     all_words = request.args.get('all_words', 'on', str)
-    import pdb;
-    pdb.set_trace()
 
     if query_string and all_words == 'on':
         instance_base_query = model.query.filter(
