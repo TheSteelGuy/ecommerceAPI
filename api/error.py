@@ -11,7 +11,7 @@ def resource_not_found(error):
             "status": 404,
             "code": USR_02,
             "message": serialization_errors['not_found'].format('the url entered'),
-            "field": "invalid url"
+            "field": "url"
         }
     })
 
