@@ -2,7 +2,7 @@ error_dict = {
     'invalid':
         'The {} is not a number ',
     'exists':
-        'The email {} already exists',
+        'The {} already exists',
     'not_found':
         "The {} doesn't exist",
     'invalid_query_strings':
