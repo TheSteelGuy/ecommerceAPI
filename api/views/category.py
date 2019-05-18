@@ -41,17 +41,22 @@ class CategoryResourece(Resource):
         return response
 
 
-@api.route('/categories/<int:category_id>')
+@api.route('/categories/<category_id>')
 class SingleCategoryResource(Resource):
     """Single category Resource"""
     def get(self, category_id):
-        category = Category.get_or_404(category_id, USR_05 ,field='category_id')
-        category_schema = CategorySchema(exclude=['deleted'])
-        data = category_schema.dump(category).data
-        response = jsonify(
-          data
-        )
-        return response
+        try:
+            int(category_id)
+            category = Category.get_or_404(category_id, USR_05 ,field='category_id')
+            category_schema = CategorySchema(exclude=['deleted'])
+            data = category_schema.dump(category).data
+            response = jsonify(
+              data
+            )
+            return response
+        except ValueError:
+            raise ValidationError(
+                {'message': serialization_errors['invalid'].format('product_id in url')}, DEP_01, 'url')
 
 
 @api.route('/categories/inDepartment/<int:department_id>')

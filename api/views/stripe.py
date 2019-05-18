@@ -10,6 +10,7 @@ from api.utilities.messages.error_messages import serialization_errors
 
 from main import api
 
+
 @api.route('/stripe/charge')
 class StripeCharge(Resource):
     """Charge payment resource"""
@@ -74,10 +75,8 @@ class StripeCharge(Resource):
     class StripeWebhooks(Resource):
 
         def post(self):
-            print(request.get_json())
             response = jsonify(
                 {'received': True}
             )
             return response
-
 

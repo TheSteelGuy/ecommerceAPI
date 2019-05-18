@@ -5,7 +5,7 @@ from .messages.error_messages import serialization_errors
 
 # Middlewares
 from ..middlewares.base_validator import ValidationError
-from api.utilities.constants.constants import USR_02, DESCRIPTION_LENGTH
+from api.utilities.constants.constants import USR_02, DESCRIPTION_LENGTH, USR_09
 
 from config import AppConfig
 
@@ -41,8 +41,8 @@ def validate_pagination_args(request):
 
         if description_length and not description_length.isdigit():
             raise ValidationError({
-                'message': "Description length only accept interger values"
-            }, USR_02)
+                'message': serialization_errors['not_numbers'].format('description length')
+            }, USR_09)
         if not description_length:
             description_length = DESCRIPTION_LENGTH
 
@@ -54,9 +54,21 @@ def validate_pagination_args(request):
         }, USR_02)
 
 
+def validate_all_words(all_words):
+    """function responsible for ensuring valid all words params are either on or off"""
+
+    allowed_words = ['on', 'off']
+    if all_words not in allowed_words:
+        raise ValidationError({
+            'message': "Invalid values for on or off."
+        }, USR_02, 'all_words')
+
+
 def search_db(request, model, query_string):
     """search model based on a query string"""
     all_words = request.args.get('all_words', 'on', str)
+
+    validate_all_words(all_words)
 
     if query_string and all_words == 'on':
         instance_base_query = model.query.filter(
@@ -64,11 +76,11 @@ def search_db(request, model, query_string):
         )
     elif query_string and all_words == 'off':
 
-        instance_base_query = model.query.whooshee_search(query_string.strip(''))
+        instance_base_query = model.query.whooshee_search(query_string)
 
     else:
         raise ValidationError({
-            'message': "The field query string is empty or invalid."
+            'message': serialization_errors['required']
         }, USR_02, 'query_string')
 
     return instance_base_query
