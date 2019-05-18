@@ -79,7 +79,7 @@ class ModelOperations(object):
             return instance
         
         raise ValidationError(
-            {'message': serialization_errors['exists'].format(email, *args)}, USR_04, 'email'
+            {'message': serialization_errors['exists'].format(f'email {email}', *args)}, USR_04, 'email'
         ) 
         
     @classmethod
@@ -98,7 +98,7 @@ class ModelOperations(object):
         Args:
             column (str): The column to check. 
             value (str): The value to verify
-            resourec (str) : abject instance name eg product, category
+            resource (str) : abject instance name eg product, category
             code (str): error code
     
 
@@ -118,15 +118,3 @@ class ModelOperations(object):
                 {'message': serialization_errors['not_found'].format(
                     f"{resource} with this id")}, code, column)
 
-    @classmethod
-    def bulk_create(cls, raw_list):
-        """
-        Save raw list of records to database
-
-        Parameters:
-            raw_list(list): List of records to be saved to database
-        """
-        resource_list = [cls(**item) for item in raw_list]
-        db.session.add_all(resource_list)
-
-        return resource_list
