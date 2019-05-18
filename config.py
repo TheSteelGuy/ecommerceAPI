@@ -30,13 +30,6 @@ class Config(object):
     SECRET_KEY = urandom(24)
     ITEMS_PER_PAGE = 20
 
-    # Celery configuration
-    REDIS_URL = getenv('REDIS_URL', default='redis://localhost:6379/0')
-    CELERYD_POOL_RESTARTS = True
-    CELERY_BROKER_URL = getenv(
-        'CELERY_BROKER_URL', default='redis://localhost:6379/0')
-    CELERY_RESULT_BACKEND = getenv(
-        'CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
 
     # Mail configuration
     ECOMM_MAIL_USERNAME = getenv('ECOMM_MAIL_USERNAME')
