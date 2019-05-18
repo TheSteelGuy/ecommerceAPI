@@ -45,12 +45,6 @@ def group_products(product_list, cart_list):
         continue
 
 
-def update_cart_item(item_dict, quantity):
-        """updates the quantity of a item in cart"""
-        item_raw_list = [
-            item_dict for i in range(1, quantity)
-        ]
-        return item_raw_list
 
 
 

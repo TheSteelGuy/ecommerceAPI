@@ -1,3 +1,4 @@
+
 import uuid
 
 from flask_restplus import Resource
@@ -15,6 +16,8 @@ from api.utilities.constants.constants import PRD_01
 from api.schemas.shopping_cart import ShoppingCartSchema
 
 from main import api
+
+
 
 cart_schema = ShoppingCartSchema(exclude=['deleted'])
 
@@ -86,7 +89,7 @@ class SingleShoppingCart(Resource):
         return response
 
 
-@api.route('/shoppingcart/update/<int:item_id>')
+@api.route('/shoppingcart/update/<item_id>')
 class UptateShoppingCartItem(Resource):
     """update Item in a cart"""
 
@@ -116,7 +119,7 @@ class UptateShoppingCartItem(Resource):
 
         except ValueError:
             raise ValidationError(
-                {'message': serialization_errors['invalid'].format('quantity')}, USR_03, 'invalid quantity value')
+                {'message': serialization_errors['invalid'].format('quantity')}, USR_03, 'quantity value')
         except AttributeError:
             raise ValidationError(
                 {'message': serialization_errors['not_found'].format('item_id')}, USR_05, 'item_id')
@@ -177,7 +180,7 @@ class ShoppingCartSaveForLater(Resource):
 
         except ValueError:
             raise ValidationError(
-                {'message': serialization_errors['invalid'].format('item_id')}, USR_03, 'item_id')
+                {'message': serialization_errors['invalid'].format('item_id in url')}, USR_03, 'url')
 
 
 @api.route('/shoppingcart/getSaved/<cart_id>')
@@ -217,7 +220,5 @@ class ShoppingCartRemoveItem(Resource):
 
         except ValueError:
             raise ValidationError(
-                {'message': serialization_errors['invalid'].format('item_id')}, USR_03, 'item_id')
-
-
+                {'message': serialization_errors['invalid'].format('item_id in url')}, USR_03, 'url')
 
