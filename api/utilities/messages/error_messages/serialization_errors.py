@@ -1,6 +1,6 @@
 error_dict = {
     'invalid':
-        'The {} is invalid ',
+        'The {} is not a number ',
     'exists':
         'The email {} already exists',
     'not_found':
@@ -9,5 +9,6 @@ error_dict = {
         'url contains invalid parameters',
     'server_error': 'We could not process {} your request, please try again',
     'field_empty': "The field {} is empty.",
-    'required': 'The field is required'
+    'required': 'The field is required',
+    'not_numbers': 'The {} is not number'
 }

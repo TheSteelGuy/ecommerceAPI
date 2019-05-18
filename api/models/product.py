@@ -2,11 +2,11 @@
 
 # Third-party libraries
 
-#middleware
+# middleware
 from api.utilities.constants.constants import PRD_01
 from ..middlewares.base_validator import ValidationError
 
-#utilities
+# utilities
 from ..utilities.messages.error_messages import serialization_errors
 # Models
 from api.models.base.base_model import BaseModel
@@ -20,7 +20,7 @@ class QueryModel(BaseModel):
     """get method for product related models"""
 
     __abstract__ = True
-    
+
     @classmethod
     def get(cls, product_id):
         """get method"""
@@ -29,7 +29,7 @@ class QueryModel(BaseModel):
             return record
         else:
             raise ValidationError(
-            {'message': serialization_errors['not_found'].format('product with this id')}, PRD_01, 'product_id')
+                {'message': serialization_errors['not_found'].format('product with this ID')}, PRD_01, 'product_id')
 
 
 @whooshee.register_model('name', 'description')
@@ -41,8 +41,8 @@ class Product(QueryModel):
     product_id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
-    price =  db.Column(db.Numeric(10,2), nullable=False)
-    discounted_price = db.Column(db.Numeric(10,2), default=0.00)
+    price = db.Column(db.Numeric(10, 2), nullable=False)
+    discounted_price = db.Column(db.Numeric(10, 2), default=0.00)
     image = db.Column(db.String(150))
     image_2 = db.Column(db.String(150))
     thumbnail = db.Column(db.String(150))
@@ -61,13 +61,13 @@ class ProductAttribute(QueryModel):
 
     product_id = db.Column(db.Integer, primary_key=True, nullable=False)
     attribute_value_id = db.Column(db.Integer, primary_key=True, nullable=False)
-   
+
 
 class ProductCategory(QueryModel):
     """model for product category basic"""
 
     __tablename__ = 'product_category'
-    
+
     product_id = db.Column(db.Integer, primary_key=True, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.category_id'), nullable=False)
     category = db.relationship(
