@@ -1,6 +1,8 @@
 """Module for order model."""
 
 # Models
+from datetime import datetime
+
 from api.models.base.base_model import BaseModel
 
 # Database
@@ -14,7 +16,7 @@ class Order(BaseModel):
 
     order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     total_amount = db.Column(db.Float(10, 2), default=0.00)
-    created_on = db.Column(db.DateTime, nullable=False)
+    created_on = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
     shipped_on = db.Column(db.DateTime)
     status = db.Column(db.Integer, default=0, nullable=False)
     comments = db.Column(db.String(255))
@@ -23,6 +25,7 @@ class Order(BaseModel):
     reference = db.Column(db.String(60))
     shipping_id = db.Column(db.Integer, db.ForeignKey('shipping.shipping_id'))
     tax_id = db.Column(db.Integer, db.ForeignKey('tax.tax_id'))
+    cart_id = db.Column(db.String(100))
 
     def __repr__(self):
         return f'<Order {self.total_amount}>'

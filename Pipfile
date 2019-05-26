@@ -32,6 +32,7 @@ flask-sse = "==0.2.1"
 greenlet = "==0.4.15"
 validate-email = "*"
 flask-testing = "*"
+sendgrid = "*"
 
 [dev-packages]
 pylint = "==2.3.1"

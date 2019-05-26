@@ -2,13 +2,19 @@ import stripe
 from flask_restplus import Resource
 from flask import jsonify, request
 from os import getenv
+from flask import render_template
 
+from api.models import Order
 from api.schemas.stripe import StripeSchema
 from api.middlewares.base_validator import ValidationError
+from api.services.clear_carts import clear_cart_after_checkout
+from api.services.send_email import send_mail
+from api.services.sendgrid_templates import email_templates
+
 from api.utilities.constants.constants import USR_02
 from api.utilities.messages.error_messages import serialization_errors
 
-from main import api
+from main import api, cache
 
 
 @api.route('/stripe/charge')
@@ -25,14 +31,25 @@ class StripeCharge(Resource):
             if error:
                 raise ValidationError(
                     {'message': serialization_errors['field_empty'].format(error[0])}, USR_02, error[0])
+
+            user_email = cache.get('user_email')
             stripe_obj = stripe.Charge.create(
                 amount=data.get('amount'),
-                currency=request_data.get('currency', 'usd'),
+                currency=data.get('currency', 'USD'),
                 description=data.get('description'),
                 source=data.get('stripeToken'),
-                metadata={'order_id': request_data.get('order_id')}
+                metadata={'order_id': str(data.get('order_id'))},
+                receipt_email=user_email
             )
 
+            cart_id = Order.query.filter_by(order_id=4).first().cart_id
+            clear_cart_after_checkout.delay(cart_id)
+            user_email = cache.get('user_email')
+            # if user_email:
+            #     send_mail.delay(
+            #         user_email, email_templates.get('order_email'),
+            #         {'amount': data.get('amount'), 'currency': data.get('currency', 'USD')}
+            #     )
             response = jsonify(
                 stripe_obj
             )
