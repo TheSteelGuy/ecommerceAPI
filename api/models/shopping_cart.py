@@ -25,6 +25,16 @@ class ShoppingCart(BaseModel):
 
     product = relationship("Product", lazy="joined")
 
+    @classmethod
+    def get(cls, id, cart=True):
+        """
+        return entries by id
+        """
+        if cart is True:
+            return cls.query.filter_by(cart_id=id).first()
+        else:
+            return cls.query.filter_by(item_id=id).first()
+
 
 def group_products(product_list, cart_list):
 
