@@ -68,7 +68,7 @@
                                 </tr>
                                 <tr>
                                   <td align="center">
-                                    <div style="font-size: 22px; line-height: 32px; font-weight: 500; margin-left: 20px; margin-right: 20px; margin-bottom: 25px;">Your purchase for ${{ data.amount }} USD is ready for shipping </div>
+                                    <div style="font-size: 22px; line-height: 32px; font-weight: 500; margin-left: 20px; margin-right: 20px; margin-bottom: 25px;">Your purchase for ${{ data.amount }} {{ currency }} is ready for shipping </div>
                                   </td>
                                 </tr>
                                 <tr>
@@ -97,14 +97,14 @@
                                           <td style="padding-bottom: 10px; padding-top: 10px;">Amount
                                             <br/>
                                           </td>
-                                          <td style="padding-bottom: 10px; padding-top: 10px;"> <strong>{{ data.amount }}</strong>
+                                          <td style="padding-bottom: 10px; padding-top: 10px;"> <strong>{{ data.amount }}</strong> {{ currency }}
                                             <br/>
                                           </td>
                                         </tr>
 
                                         <tr>
                                           <td style="padding-bottom: 10px; padding-top: 10px;">Total</td>
-                                          <td style="padding-bottom: 10px; padding-top: 10px;">${{ data.amount }}</td>
+                                          <td style="padding-bottom: 10px; padding-top: 10px;"><strong>{{ data.amount }}</strong> {{ currency }}</td>
                                         </tr>
                                       </tbody>
                                     </table>
