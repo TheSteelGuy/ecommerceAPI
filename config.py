@@ -29,6 +29,14 @@ class Config(object):
     BUGSNAG_API_KEY = getenv('BUGSNAG_API_KEY')
     SECRET_KEY = urandom(24)
     ITEMS_PER_PAGE = 20
+    CELERYD_POOL_RESTARTS = True
+    REDIS_URL = getenv('REDIS_URL', default='redis://localhost:6379/0')
+    CELERY_BROKER_URL = getenv(
+        'CELERY_BROKER_URL', default='redis://localhost:6379/0')
+    CELERY_RESULT_BACKEND = getenv(
+        'CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+    SENDGRID_API_KEY = getenv('SENDGRID_API_KEY')
+    TURING_MAIL_USERNAME = getenv('TURING_MAIL_USERNAME')
 
 
     # Mail configuration
