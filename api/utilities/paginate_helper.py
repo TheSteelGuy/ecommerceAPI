@@ -120,6 +120,6 @@ def truncate_description(data, description_length):
 def paginator(model_instances, page, limit):
     """pagination function"""
     records = model_instances.paginate(page, limit, False).items
-    total_records_count = len(records) if records else model_instances.count()
+    total_records_count = model_instances.count()
 
     return records, total_records_count
