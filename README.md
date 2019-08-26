@@ -1,4 +1,4 @@
-## Turing Backend Challenge
+## E-commerce Challenge
 
 
 The API documentation can be found here: [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/77da43d136770767f52c)
