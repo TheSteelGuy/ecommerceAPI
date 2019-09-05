@@ -30,7 +30,7 @@ Setting the project and running
 -   Clone the project repo and cd into it:
 
     ```
-    git clone https://github.com/TheSteelGuy/tur_ecom.git
+    git clone https://github.com/TheSteelGuy/tur_ecommerceAPI
     cd tur_ecom
     git checkout develop
   
