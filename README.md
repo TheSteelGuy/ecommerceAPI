@@ -1,4 +1,4 @@
-## E-commerce Challenge
+## E-commerce API 
 
 
 The API documentation can be found here: [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/77da43d136770767f52c)
@@ -48,7 +48,7 @@ Setting the project and running
 
     ```
     unzip the file
-    cd tur_ecom
+    cd ecommmerceAPI
   
     ```
     
@@ -61,10 +61,10 @@ Setting the project and running
 -   Make a copy of the .env.sample file  and rename it to .env and update the variables accordingly:
 
     ```
-    DATABASE_URI=mysql://username:password@localhost/tur
+    DATABASE_URI=mysql://username:password@localhost/ecom
     FLASK_ENV=development
     API_BASE_URL_V1=/api/v1
-    TEST_DATABASE_URI=mysql://username:password@localhost/tur_tests
+    TEST_DATABASE_URI=mysql://username:password@localhost/ecom
     ECOMM_MAIL_USERNAME=""
     stripe_api_key=sk_test_lomdOfxbm7QDgZWvR82UhV6D
     ADMIN=e_admin
@@ -92,13 +92,13 @@ Setting the project and running
     
  - on the msql client terminal create database like so:
     ```
-    create database tur
+    create database ecom
     ```
     
   - on the msql client terminal create a user like so and then grant them permission:
     ```
     CREATE USER 'username'@'localhost IDENTIFIED BY 'password';
-    GRANT ALL PRIVILEGES ON tur.* TO 'username'@'localhost';
+    GRANT ALL PRIVILEGES ON ecom.* TO 'username'@'localhost';
     ```
     ### import the database and data.
     
